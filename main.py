@@ -1,21 +1,30 @@
 import boto3
 import psycopg2
+from dotenv import load_dotenv
+import os
 
-# AWS credentials and region
-aws_access_key_id = 'AKIA4MTWNDYZCXXIUWOY'
-aws_secret_access_key = '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'
-aws_region = 'eu-north-1'
+# Load environment variables from env_vars file into current environment
+load_dotenv('env_vars')  # Specify the name of your env file here
 
-# S3 bucket and Redshift cluster configuration
-bucket_name = 'capstone-data-ingestion-bucket'
-s3_data_prefix = 'data/'  # adjust prefix if your files are in a specific directory
-redshift_database = 'capstonesalesdb'
-redshift_user = 'mosogbe123'
-redshift_password = 'Sogbe123$$$'
-redshift_host = 'capstone-project-redshift-cluster.cwo3ts8pt0ig.eu-north-1.redshift.amazonaws.com:5439/dev'
-redshift_port = '5439'
-redshift_table = 'orders'
-file_metadata_table = 'file_metadata'
+# Access AWS credentials and region
+aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
+aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+aws_region = os.getenv('AWS_REGION')
+
+# Access S3 bucket and Redshift configuration
+bucket_name = os.getenv('S3_BUCKET_NAME')
+s3_data_prefix = os.getenv('S3_DATA_PREFIX')
+redshift_database = os.getenv('REDSHIFT_DATABASE')
+redshift_user = os.getenv('REDSHIFT_USER')
+redshift_password = os.getenv('REDSHIFT_PASSWORD')
+redshift_host = os.getenv('REDSHIFT_HOST')
+redshift_port = os.getenv('REDSHIFT_PORT')
+redshift_table = os.getenv('REDSHIFT_TABLE')
+file_metadata_table = os.getenv('FILE_METADATA_TABLE')
+
+# Use the variables in your application
+print(f"AWS region: {aws_region}")
+print(f"Connecting to Redshift cluster at {redshift_host}:{redshift_port}...")
 
 # Connect to S3
 s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id,

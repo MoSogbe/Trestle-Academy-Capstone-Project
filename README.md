@@ -20,7 +20,7 @@ This project demonstrates how to ingest data from a CSV file stored in an S3 buc
 
 1. **Clone the repository:**
     ```sh
-    git clone <repository_url>
+    git clone https://github.com/MoSogbe/Trestle-Academy-Capstone-Project.git
     cd <repository_name>
     ```
 
